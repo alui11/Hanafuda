@@ -1,0 +1,78 @@
+<!doctype html>
+
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Hanafuda</title>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<meta name="description" content="Hanafuda">
+		<meta name="author" content="Alison Lui">
+
+		<script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+		<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<link rel="stylesheet" href="style.css">
+		<script src="hanafuda.js"></script>
+	</head>
+	<body>
+		<div id="dialog-confirm" title="Empty the recycle bin?" style="display:none;">
+			  <p id="message_text">こいこい？</p>
+		</div>
+		<h5>アリソン・ルイ</h5>
+		<h1>花札</h1>
+		<p class="well" id="totalscores">私：０文　　　　他のプレーヤー：０文</p>
+		<h4>プレーヤー<b>１</b>のターンです。</h4>
+		<h3>場</h3>
+		<!--img src="./images/sakura.png" style="float:left; width:200px"-->
+		<div class="well" id="table"></div>
+		<h3>手札</h3>
+		<div class="well" id="hand"></div>
+		<h3 id="mycapturedtext">私のカード</h3>
+		<div class="well" id="mycaptured" style="height:176px;">
+			<div id="mynormals"></div>
+			<div id="myanimals" style="text-align:right;"></div>
+			<div id="myribbons"></div>
+			<div id="mybrights"></div>
+		</div>
+		<h3 id="yourcapturedtext">他のプレーヤのカード</h3>
+		<div class="well" id="yourcaptured" style="height:176px;">
+			<div id="yournormals"></div>
+			<div id="youranimals"></div>
+			<div id="yourribbons"></div>
+			<div id="yourbrights"></div>
+		</div>
+		<div id="chooseplayer" class="well">
+			プレーヤー１
+			<label class="switch">
+				  <input type="checkbox" id="playerswitch">
+					<div class="slider round"></div>
+			</label>
+			プレーヤー２
+		</div>
+		<div id="newgame">
+			<button onclick="initer()" id="reset" class="btn text-right">新しいゲーム</button>
+		</div>
+	</body>
+		<script>
+		$('#playerswitch').change(function(){
+			if (player_num === 1){
+				player_num = 2
+			} else{
+				player_num = 1
+			}
+			update_screen();
+			console.log(player_num)
+		})
+		</script>
+</html>
